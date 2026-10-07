@@ -22,7 +22,8 @@ jobs:
           rm -rf .niark-import
           mkdir .niark-import
           unzip -o Niark-android-dev-v0.2.0.zip -d .niark-import
-          cp -a .niark-import/. .
+rm -rf .niark-import/.github
+cp -a .niark-import/. .
           rm -rf .niark-import Niark-android-dev-v0.2.0.zip
 
       - name: Commit extracted project
