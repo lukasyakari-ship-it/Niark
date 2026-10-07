@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.RenderProcessGoneDetail;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
@@ -38,12 +39,12 @@ public class MainActivity extends Activity {
             @Override public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
                 return false;
             }
-            @Override public void onRenderProcessGone(WebView view, RenderProcessGoneDetail detail) {
-                super.onRenderProcessGone(view, detail);
+            @Override public boolean onRenderProcessGone(WebView view, RenderProcessGoneDetail detail) {
                 view.destroy();
                 webView = new WebView(MainActivity.this);
                 setContentView(webView);
                 recreate();
+                return true;
             }
         });
 
