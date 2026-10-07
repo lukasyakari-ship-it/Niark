@@ -39,6 +39,11 @@ public class MainActivity extends Activity {
             @Override public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
                 return false;
             }
+            @Override public void onPageFinished(WebView view, String url) {
+                view.evaluateJavascript(
+                    "if(!window.__niarkPatch){window.__niarkPatch=1;var s=document.createElement('script');s.src='/assets/niark-patch.js';document.body.appendChild(s);}",
+                    null);
+            }
             @Override public boolean onRenderProcessGone(WebView view, RenderProcessGoneDetail detail) {
                 view.destroy();
                 webView = new WebView(MainActivity.this);
